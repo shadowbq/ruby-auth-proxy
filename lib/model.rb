@@ -1,4 +1,4 @@
-DataMapper.setup(:default, "sqlite://#{Dir.pwd}/db.sqlite")
+DataMapper.setup(:default, "sqlite://#{Dir.pwd}/db/db.sqlite")
 
 class User
   include DataMapper::Resource

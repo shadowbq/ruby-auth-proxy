@@ -1,3 +1,4 @@
-/db.sqlite
+db/db.sqlite
 .ruby-gemset
 .ruby-version
+!.gitkeep
