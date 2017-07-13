@@ -130,7 +130,7 @@ DEPENDENCIES
   sinatra-contrib (~> 1.4.7)
   sinatra-flash (~> 0.3.0)
   sinatra-param
-  sinatra-strong-params
+  sinatra-strong-params (~> 0.0.3)
   warden (~> 1.2.6)
 
 BUNDLED WITH
