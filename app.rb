@@ -2,31 +2,20 @@ require 'bundler'
 Bundler.require
 
 # load the Database and User model
-require './model'
-
-Warden::Strategies.add(:password) do
-  def valid?
-    params['user'] && params['user']['username'] && params['user']['password']
-  end
-
-  def authenticate!
-    user = User.first(username: params['user']['username'])
-
-    if user.nil?
-      throw(:warden, message: "The username you entered does not exist.")
-    elsif user.authenticate(params['user']['password'])
-      success!(user)
-    else
-      throw(:warden, message: "The username and password combination is incorrect")
-    end
-  end
-end
+#require_relative 'lib/model'
+require_relative 'db/db'
+require_relative 'lib/strategies'
+require_relative 'apps/revert'
 
 class SinatraAuthProxy < Sinatra::Base
   enable :sessions
   register Sinatra::StrongParams
   register Sinatra::Flash
   helpers Sinatra::Param
+
+  configure do
+    DB.setup
+  end
 
   #set :session_secret, "supersecret"
 
@@ -104,18 +93,6 @@ class SinatraAuthProxy < Sinatra::Base
     erb :protected
   end
 
-  get '/revert/:id' do
-    param :id, Integer, transform: :to_s, required: true
-
-    uri = URI::HTTP.build(
-        :host => localhost,
-        :port => 8080,
-        :path => request.path_info,
-        :query => request.query_string
-    )
-
-    content_type 'application/json', :charset => 'utf-8'
-
-    Net::HTTP.get(uri)
-  end
+  use Heartbeat
+  use Revert
 end
