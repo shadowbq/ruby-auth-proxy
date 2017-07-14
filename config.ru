@@ -20,11 +20,12 @@ else
   require 'pry-byebug'
   use Rack::ShowExceptions
 end
-
-use Rack::Session::Cookie, :secret => 'WhatisTh1sMyS3cr3t!'
-
+use Rack::Session::Cookie, :key => 'rack.session',
+                         :path => '/',
+                         :secret => 'your_secret'
 use Rack::Csrf, :raise => true
 use Rack::Protection
+
 
 require './app'
 

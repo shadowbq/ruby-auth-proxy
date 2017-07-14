@@ -7,12 +7,13 @@ require_relative 'lib/model'
 require_relative 'lib/strategies'
 
 class SinatraAuthProxy < Sinatra::Base
-  enable :sessions
   register Sinatra::StrongParams
   register Sinatra::Flash
   helpers Sinatra::Param
 
-  #set :session_secret, "supersecret"
+  #require 'pry'
+  #binding.pry
+  #
 
 end
 

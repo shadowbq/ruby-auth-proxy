@@ -24,6 +24,7 @@ gem 'dm-validations', '~> 1.2.0'
 #debugging
 group :development do
   gem 'shotgun'
+  gem 'thin'
   gem 'pry'
   gem 'pry-remote'
   gem 'pry-byebug'
