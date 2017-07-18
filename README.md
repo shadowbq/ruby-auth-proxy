@@ -1,12 +1,9 @@
-# Sinatra Warden Example
+# Ruby Auth Proxy
 
-_This readme is copied from the original blog post [on my site](http://sklise.com/2013/03/08/sinatra-warden-auth/)._
+# Branch : ROM3 Warden Auth
 
-_UPDATE 5/18/2014, Switched from Rack::Flash to Sinatra/Flash and added instructions for launching the app._
+This is an implementation of Sinatra with Warden using a username and password strategy. Datamapper is used as an alternative to activerecord, and a number of Rack and Sinatra extras are implemented to ensure security. The purpose of the app is to layer this using `config.ru` or in routed reverse proxy such as NGINX.
 
-In this article I'll explain the basics of authentication and Rack middleware
-and in the process build a complete app with [Sinatra](http://sinatrarb.com),
-[DataMapper](http://datamapper.org) and [Warden](http://github.com/hassox/warden).
 
 ## Audience
 
